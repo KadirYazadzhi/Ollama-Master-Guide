@@ -71,66 +71,107 @@ Ollama is a great alternative for developers, researchers, and AI enthusiasts lo
 | **34B** | 24GB+ VRAM | RTX 3090, RTX 4090 |
 | **70B** | 48GB+ VRAM | A100, H100 |
 
-### **Personal Test Setup**  
-During testing, a **HP EliteDesk 800 G3 mini PC** was used. While it was sufficient for **basic model execution**, it lacked the power to efficiently run models larger than **7-8B parameters**. This setup is **not recommended** for serious local AI development but works fine for testing and small-scale models.
+## **Personal Test Setup** 🖥️  
+
+During testing, a **HP EliteDesk 800 G3 mini PC** was used. This compact desktop PC is equipped with an **Intel Core i5-6500T processor, 16GB of DDR4 RAM, and a 256GB SSD**. While it was sufficient for **basic model execution**, it lacked the power to efficiently run models larger than **7-8B parameters**.  
+
+
+### **Key Specifications of the Test Setup** 📋  
+
+| Component | Details | 
+|-----------|---------|
+| **Processor** | Intel Core i5-6500T (4 cores, 4 threads) |   
+| **RAM** | 16GB DDR4 |   
+| **Storage** | 256GB SSD | 
+| **GPU** | Integrated Intel HD Graphics 630 |
+| **OS** | Linux Lite |
+
+
+### **Performance Insights** 📊  
+
+- **7B Models**: The setup handled **7B parameter models** (e.g., Llama 2 7B) reasonably well, with inference speeds averaging **2-3 tokens per second**. 🚀  
+- **13B Models**: Attempting to run **13B models** resulted in significant slowdowns, with inference speeds dropping to **0.5-1 token per second**. 🐢  
+- **Larger Models**: Models like **Llama 2 34B** or **70B** were **not feasible** due to insufficient RAM and lack of a dedicated GPU. 🚫  
+
+
+### **Visuals of the HP EliteDesk 800 G3 Mini PC** 📸  
+
+Here are some images of the **HP EliteDesk 800 G3 mini PC** used in the testing:  
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.tradera.net%2Fimages%2F672%2F346803672_e29384a0-8725-4a7a-9262-14ddd71b21f4.jpg&f=1&nofb=1&ipt=e41e2ddeff1f43809dc4f5342dbf44ad3b4a8fab35f0cf3a5c657f3214ab62a6&ipo=images" alt="HP EliteDesk 800 G3 Front" style="width: 48%; height: auto;">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdata.clickforshop.it%2Fimgprodotto%2Fhp-elitedesk-800-g4-dm-mini-pc-intel-core-i7-8700t-ram-8gb-ddr4-hard-disk-256gb-ssd-windows-10-pro-colore-nero-argento_263052_zoom.jpg&f=1&nofb=1&ipt=393b4141570aa0e975816c0b95062c1eebf450a109e5d574487897212ee1db00&ipo=images" alt="HP EliteDesk 800 G3 Rear" style="width: 48%; height: auto;">
+</div>
+
+
+### **Recommendations** 🚀  
+
+While the **HP EliteDesk 800 G3 mini PC** is a great choice for **general-purpose computing**, it is **not recommended** for serious local AI development, especially when working with larger models. For optimal performance, consider upgrading to a system with:  
+
+- A **dedicated GPU** (e.g., NVIDIA RTX 3060 or higher). 🎮  
+- **32GB+ RAM** for handling larger models. 🧠  
+- **NVMe SSD storage** for faster data access. 💾  
+
+This setup is ideal for **testing and small-scale projects**, but for **production-level AI workloads**, a more powerful machine is necessary. 🔥  
+
 
 
 ## 📥 Installation Guides  
 
 ### **🐧 Linux Installation**  
 
-#### **Method 1: Official Script**  
-```bash
-curl -fsSL https://ollama.ai/install.sh | sh
-```
-
-#### **Method 2: Manual Build**  
-```bash
-git clone https://github.com/jmorganca/ollama
-cd ollama
-go build .
-sudo cp ollama /usr/local/bin/
-```
-
-#### **Verify Installation**  
-```bash
-ollama --version  # Should return v0.1.15+
-```
+   #### **Method 1: Official Script**  
+   ```bash
+   curl -fsSL https://ollama.ai/install.sh | sh
+   ```
+   
+   #### **Method 2: Manual Build**  
+   ```bash
+   git clone https://github.com/jmorganca/ollama
+   cd ollama
+   go build .
+   sudo cp ollama /usr/local/bin/
+   ```
+   
+   #### **Verify Installation**  
+   ```bash
+   ollama --version  # Should return v0.1.15+
+   ```
 
 ### **🍎 macOS Installation**  
 
-#### **Homebrew Method**  
-```bash
-brew install ollama
-brew services start ollama
-```
-
-#### **Universal Binary**  
-```bash
-curl -O https://ollama.ai/download/Ollama-darwin.zip
-unzip Ollama-darwin.zip
-xattr -d com.apple.quarantine Ollama
-sudo mv Ollama /usr/local/bin/
-```
+   #### **Homebrew Method**  
+   ```bash
+   brew install ollama
+   brew services start ollama
+   ```
+   
+   #### **Universal Binary**  
+   ```bash
+   curl -O https://ollama.ai/download/Ollama-darwin.zip
+   unzip Ollama-darwin.zip
+   xattr -d com.apple.quarantine Ollama
+   sudo mv Ollama /usr/local/bin/
+   ```
 
 ### **🪟 Windows Installation**  
 
-#### **Native (Beta)**  
-1. Download `OllamaSetup.exe` from [GitHub Releases](https://github.com/jmorganca/ollama/releases)
-2. Run installer as Administrator
-3. Add to PATH during installation
-
-#### **WSL2 Method (Recommended)**  
-```powershell
-wsl --install Ubuntu-22.04
-wsl
-curl -fsSL https://ollama.ai/install.sh | sh
-```
+   #### **Native (Beta)**  
+   1. Download `OllamaSetup.exe` from [GitHub Releases](https://github.com/jmorganca/ollama/releases)
+   2. Run installer as Administrator
+   3. Add to PATH during installation
+   
+   #### **WSL2 Method (Recommended)**  
+   ```powershell
+   wsl --install Ubuntu-22.04
+   wsl
+   curl -fsSL https://ollama.ai/install.sh | sh
+   ```
 
 ### **🐳 Docker Installation**  
-```bash
-docker pull ollama/ollama
-```
+   ```bash
+   docker pull ollama/ollama
+   ```
 
 
 ## ⌨️ Core CLI Commands  
@@ -309,7 +350,7 @@ done
 
 
 ## 🎉 Conclusion  
-With this guide, you should have a **fully operational local AI setup**, leveraging **Ollama and Open WebUI**. 🚀 Whether you're running lightweight models or pushing the limits with high-end GPUs, Ollama offers a flexible, private, and efficient solution. **Happy coding!** 👨‍💻🔥
+With this guide, you should have a **fully operational local AI setup**, leveraging **Ollama and Open WebUI**. 🚀 Whether you're running lightweight models or pushing the limits with high-end GPUs, Ollama offers a flexible, private, and efficient solution. 👨‍💻🔥
 
 📚 **Resources**:  
 - [Official Docs](https://ollama.ai/docs)  
